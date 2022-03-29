@@ -1,0 +1,40 @@
+.wholepage {
+    display: flex;
+    
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.collums {
+    margin: 20px;
+    
+    background-color: lightslategray;
+    height: 500px;
+    width: 300px;
+    padding: 30px;
+    display: inline-block;
+}
+
+.collums2 {
+    margin: 20px;
+    /* margin-left: 80px; */
+    background-color: lightslategray;
+    height: 500px;
+    width: 300px;
+    padding: 30px;
+    display: inline-block;
+}
+
+.form {
+    margin-bottom: 15px;
+    color: antiquewhite;
+}
+
+.label {
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: greenyellow;
+}

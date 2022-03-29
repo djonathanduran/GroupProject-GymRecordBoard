@@ -1,0 +1,20 @@
+
+Members: Jonathan Duran-Diaz, John Kostrowski, Israel Martinez, Nicolas Puente
+
+Project title: Gym Personal Record Board
+
+Project stack: Python - Flask
+
+Github Repo link: https://github.com/djonathanduran/Budget-tool
+
+Project description: This Project is board where people can post their PRs in common gym workouts and view/comment on others. The idea is to create a community where people can help motivate one another and get better.
+
+Roles:
+
+Jonathan Duran-Diaz - models/ login + reg
+
+John Kostrowski - wireframe + bootstrap
+
+Israel Martinez - ERD + routes/templates 
+
+Nicolas Puente - controllers
