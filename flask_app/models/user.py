@@ -25,33 +25,30 @@ class User:
 
         return connectToMySQL(cls.db).query_db(query, data)
 
+
     @staticmethod
-    def validate_registration(data):
-        is_valid = (True)
-        # special_characters = [':', "#", "!"]
-        # if special_characters not in data['password']
-        if len(data["first_name"]) == 0:
-            is_valid = False
-            flash("First name is required", "error")
-        if len(data["last_name"]) == 0:
-            is_valid = False
-            flash("Last name is required", "error")
-        if len(data['password']) < 8:
-            is_valid = False
-            flash("password must be at least 8 characters long", "error")
-        if not EMAIL_REGEX.match(data['email']):
-            flash("Invalid email address!", "error")
-            is_valid = False
-        if data['password'] != data['confirm_password']:
-            is_valid = False
-            flash("Passwords don't match", "error")
+    def validate_register(user):
+        is_valid = True
         query = "SELECT * FROM users WHERE email = %(email)s;"
-        results = connectToMySQL(User.db).query_db(query, data)
-        print(f"results: {results}")
-        print(f"length of results: {len(results)}")
+        results = connectToMySQL(User.db).query_db(query,user)
         if len(results) >= 1:
+            flash("Email already taken.","register")
+            is_valid=False
+        if not EMAIL_REGEX.match(user['email']):
+            flash("Invalid Email!!!","register")
+            is_valid=False
+        if len(user['first_name']) < 3:
+            flash("First name must be at least 3 characters","register")
+            is_valid= False
+        if len(user['last_name']) < 3:
+            flash("Last name must be at least 3 characters","register")
+            is_valid= False
+        if len(user['password']) < 8:
+            flash("Password must be at least 8 characters","register")
+            is_valid= False
+        if user['password'] != user['confirm']:
+            flash("Passwords don't match","register")
             is_valid = False
-            flash("Email is already taken", "error")
         return is_valid
 
     @classmethod
@@ -80,5 +77,5 @@ class User:
             flash("An Email is required", "error")
         if len(data['password']) == 0:
             is_valid = False
-            flash("An Password is required", "error")
+            flash("A Password is required", "error")
         return is_valid
