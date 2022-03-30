@@ -1,67 +1,63 @@
-
-from flask_app import app
 from flask import render_template, redirect, session, request, flash
-from flask_app.models import user
+from flask_app import app
+from flask_app.models.user import User
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
-
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+# Create a user / register
 
-@app.route('/register', methods=['POST'])
+@app.route('/register',methods=['POST'])
 def register():
-    if not user.User.validate_registration(request.form):
-        return redirect('/')
-    pw_hash = bcrypt.generate_password_hash(request.form['password'])
-    print(pw_hash)
 
-    data = {
-        'first_name': request.form['first_name'],
-        'last_name': request.form['last_name'],
-        'email': request.form['email'],
-        'password': pw_hash
+    if not User.validate_register(request.form):
+        return redirect('/')
+    data ={ 
+        "first_name": request.form['first_name'],
+        "last_name": request.form['last_name'],
+        "email": request.form['email'],
+        "password": bcrypt.generate_password_hash(request.form['password'])
     }
-    user_id = user.User.create_user(data)
-    session['user_id'] = user_id
+    id = User.save(data)
+    session['user_id'] = id
+
     return redirect('/dashboard')
 
 
-@app.route("/login", methods=['POST'])
+# login a user
+
+@app.route('/login',methods=['POST'])
 def login():
-    if not user.User.validate_login(request.form):
+    user = User.get_by_email(request.form)
+
+    if not user:
+        flash("Invalid Email","login")
         return redirect('/')
-
-    data = {
-        'email': request.form['email']
-    }
-    user_with_email = user.User.get_by_email(data)
-
-    if not user_with_email:
-        flash("Invalid Email/Password", "error")
+    if not bcrypt.check_password_hash(user.password, request.form['password']):
+        flash("Invalid Password","login")
         return redirect('/')
-
-    if not bcrypt.check_password_hash(user_with_email.password, request.form['password']):
-        return redirect('/')
-
-    session['user_id'] = user_with_email.id
-    flash('Congrats, your logged in!', "error")
+    session['user_id'] = user.id
     return redirect('/dashboard')
 
+# Read users and cars
+
+@app.route('/dashboard')
+def dashboard():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data ={
+        'id': session['user_id']
+    }
+    users = User.get_by_id(data)
+    return render_template("dashboard.html", users = users)
+
+
+# logout
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
-
-
-@app.route('/dashboard')
-def dashboard():
-    if 'user_id' not in session:
-        return redirect('/')
-    data = {
-        'id': session['user_id']
-    }
-    return render_template('index2.html', logged_in_user=user.User.get_by_id(data))
