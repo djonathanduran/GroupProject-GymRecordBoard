@@ -36,7 +36,7 @@ class Workout:
 
     @classmethod
     def update_workout(cls, data):
-        query = "UPDATE workouts SET cardio_max = %(cardio_max)s, arm_curl_max = %(arm_curl_max)s, squats_max_sets = %(squats_max_sets)s, situp_reps_max = %(situp_reps_max)s, leg_set_max = %(leg_set_max)s, triceps_sets_max = %(triceps_sets_max)s WHERE id = %(id)s"
+        query = "UPDATE workouts SET cardio_max = %(cardio_max)s, arm_curl_max = %(arm_curl_max)s, squats_max_sets = %(squats_max_sets)s, situp_reps_max = %(situp_reps_max)s, legs_set_max = %(legs_set_max)s, triceps_sets_max = %(triceps_sets_max)s WHERE id = %(id)s"
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     @classmethod
