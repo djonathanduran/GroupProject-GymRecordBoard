@@ -5,7 +5,7 @@ from .import user
 
 
 class Workout:
-    db_name = "workouts"
+    db_name = "mydb"
 
     def __init__(self, db_data):
         self.id = db_data['id']
