@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="twonav">
+        <h1>Gym Record Board</h1>
+        <form action="/logout">
+            <button class="golden-btn" type="submit">Logout</button>
+        </form>
+    </div>
+        <div class="thirdrow">
+            <h1>Welcome {{ logged_in_user.first_name }}</h1>
+        </div>
+</body>
+
+</html>

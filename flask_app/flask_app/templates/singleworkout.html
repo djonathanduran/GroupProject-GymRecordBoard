@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Gym Record Board</title>
+</head>
+<body>
+    <div class="twonav">
+        <h1>Gym Record Board</h1>
+        <form action="/logout">
+            <button class="golden-btn" type="submit">Logout</button>
+        </form>
+    </div>
+    <div class="collums3">
+        <h1>Your Workouts</h1>
+        <h2>{{ one_workout.cardio_max }}</h2>
+        <h2>{{ one_workout.arm_curl_max }}</h2>
+        <h2>{{ one_workout.squats_max_sets }}</h2>
+        <h2>{{ one_workout.situp_reps_max }}</h2>
+        <h2>{{ one_workout.leg_set_max }}</h2>
+        <h2>{{ one_workout.triceps_sets_max }}</h2>
+    </div>
+</body>
+</html>
