@@ -5,7 +5,7 @@ Project title: Gym Personal Record Board
 
 Project stack: Python - Flask
 
-Github Repo link: https://github.com/djonathanduran/Budget-tool
+Github Repo link: https://github.com/djonathanduran/GroupProject-GymRecordBoard.git
 
 Project description: This Project is board where people can post their PRs in common gym workouts and view/comment on others. The idea is to create a community where people can help motivate one another and get better.
 
