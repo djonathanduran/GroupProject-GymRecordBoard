@@ -8,6 +8,13 @@
     <title>Document</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <h1 class="col-9 text-info">Gym Record Board</h1>
+            <a class="navbar-brand btn btn-primary" href="/dashboard">Dashboard</a>
+            <a class="navbar-brand btn btn-info" href="/logout">Logout</a>
+        </div>
+    </nav>
     <div class="d-flex justify-content-around mt-4 ">
         <div class="col-4 p-4 bg-dark text-light">
             <div class="bg-secondary">
@@ -20,7 +27,7 @@
             <h4>Situp Reps Max: {{ one_workout.situp_reps_max }}</h4>
             <h4>legs Set Max: {{ one_workout.legs_set_max }}</h4>
             <h4>Triceps Sets Max: {{ one_workout.triceps_sets_max }}</h4>
-
+            <a class="btn btn-danger" href="/destroy_workout/{{one_workout.id}}">Delete PRs</a>
         </div>
     </div>
 </body>

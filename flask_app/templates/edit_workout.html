@@ -8,8 +8,15 @@
     <title>Document</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <h1 class="col-9 text-info">Gym Record Board</h1>
+            <a class="navbar-brand btn btn-primary" href="/dashboard">Dashboard</a>
+            <a class="navbar-brand btn btn-info" href="/logout">Logout</a>
+        </div>
+    </nav>
     <div class="d-flex justify-content-around mt-4">
-        <form action="/update_workout" method="POST" class="col-4 p-4 bg-dark text-light">
+        <form action="/update_workout/{{ one_workout.id }}" method="POST" class="col-4 p-4 bg-dark text-light">
             {% with messages = get_flashed_messages(category_filter=['workout']) %}
                 {% if messages %}
                     <div class="alert alert-danger" role="alert">
@@ -24,22 +31,18 @@
                 <label for="cardio_max">Cardio Max:</label>
                 <input type="number" name="cardio_max" class="form-control" required value="{{one_workout.cardio_max}}">
             </div>
-
             <div class="form-group">
                 <label for="arm_curl_max">Arm Curl Max:</label>
                 <input type="number" name="arm_curl_max" class="form-control" required value="{{one_workout.arm_curl_max}}">
             </div>
-
             <div class="form-group">
                 <label for="squats_max_sets">Squats Max Sets:</label>
                 <input type="number" name="squats_max_sets" class="form-control" required value="{{one_workout.squats_max_sets}}">
             </div>
-
             <div class="form-group">
                 <label for="situp_reps_max">Situp Reps Max:</label>
                 <input type="number" name="situp_reps_max" class="form-control" required value="{{one_workout.situp_reps_max}}">
             </div>
-
             <div class="form-group">
                 <label for="legs_set_max">Leg Set Max:</label>
                 <input type="number" name="legs_set_max" class="form-control" value="{{one_workout.legs_set_max}}">
@@ -49,7 +52,6 @@
                 <label for="triceps_sets_max">Leg Set Max:</label>
                 <input type="number" name="triceps_sets_max" class="form-control" value="{{one_workout.triceps_sets_max}}">
             </div>
-
             <input type="submit" value="Update PRs" class="form-control btn btn-primary">
         </form>
     </div>

@@ -8,15 +8,20 @@
     <title>Document</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <h1 class="col-9 text-info">Gym Record Board</h1>
+            <a class="navbar-brand btn btn-primary" href="/dashboard">Dashboard</a>
+            <a class="navbar-brand btn btn-info" href="/logout">Logout</a>
+        </div>
+    </nav>
     <div>
-        <h1>Name: {{ users_and_workouts.first_name }} {{ users_and_workouts.last_name }}</h1>
-
-        <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-around mt-4">
             <div class="col-10 p-4 bg-dark text-light">
-                <h1 class="text-danger">Your PRs!!!</h1>
+                <h1 class="text-danger">Personal Records!!!</h1>
                 <table class="table table-striped table-hover table-light table-bordered">
                     <thead>
-                        <th>date</th>
+                        <th>Date</th>
                         <th>Cardio Max</th>
                         <th>Arm Curl Max</th>
                         <th>Squats Max Sets</th>

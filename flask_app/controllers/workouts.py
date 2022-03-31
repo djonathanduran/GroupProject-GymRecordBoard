@@ -74,7 +74,7 @@ def update_one_workout(workout_id):
         return redirect(f'/edit/{workout_id}')
     data = {
         'id': workout_id,
-        "cardio": request.form["cardio"],
+        "cardio_max": request.form["cardio_max"],
         "arm_curl_max": request.form["arm_curl_max"],
         "squats_max_sets": request.form["squats_max_sets"],
         "situp_reps_max": request.form["situp_reps_max"],
@@ -82,7 +82,7 @@ def update_one_workout(workout_id):
         "triceps_sets_max": request.form["triceps_sets_max"]
     }
     Workout.update_workout(data)
-    return redirect('/dashboard')
+    return redirect(f'/one_workout/{workout_id}')
 
 
 # Destroy a workouts
@@ -94,6 +94,5 @@ def delete_workout(workout_id):
     data = {
         'id': workout_id
     }
-
     Workout.destroy_workout(data)
     return redirect('/dashboard')

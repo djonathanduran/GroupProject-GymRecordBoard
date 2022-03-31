@@ -11,32 +11,34 @@
 </head>
 
 <body>
-    <div class="wholepage">
-        <div class="collums">
-            <h1>Welcome {{ users.first_name }}</h1>
-            <a class="btn btn-primary" href="/new">Add record</a>
-            <a class=" btn btn-info" href="/logout">Logout</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <h1 class="col-9 text-info">Welcome {{ users.first_name }}!!!</h1>
+            <a class="navbar-brand btn btn-info" href="/logout">Logout</a>
         </div>
+    </nav>
+    <div>
+        <h1 class="text-primary">Members</h1>
+        <table class="table table-striped table-hover table-light table-bordered">
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </thead>
+            {% for one_user in all_users %}
+            <tbody>
+                <td>{{one_user.first_name}} {{ one_user.last_name }}</td>
+                <td>{{ one_user.email }}</td>
+                <td>
+                    <a class="btn btn-primary" href="/one_user/{{ one_user.id }}">View</a>
+                    {% if one_user.id == session.user_id %}
+                    {% endif %}
+                </td>
+            </tbody>
+            {% endfor%}
+        </table>
+        <a class="btn btn-primary" href="/new">Add record</a>
     </div>
-    <table class="table table-striped table-hover table-light table-bordered">
-        <thead>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </thead>
-        {% for one_user in all_users %}
-        <tbody>
-            <td>{{one_user.first_name}} {{ one_user.last_name }}</td>
-            <td>{{ one_user.email }}</td>
-            <td>
-                <a href="/one_user/{{ one_user.id }}">View</a> |
-                {% if one_user.id == session.user_id %}
-                <a href="/destroy/{{ one_user.id }}">Delete</a>
-                {% endif %}
-            </td>
-        </tbody>
-        {% endfor%}
-    </table>
 </body>
 
 </html>
