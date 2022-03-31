@@ -5,7 +5,7 @@ from .import user, workout
 
 
 class Expense:
-    db_name2 = "mydb"
+    db_name2 = "workouts"
 
     def __init__(self, db_data2):
         self.id = db_data2['id']
