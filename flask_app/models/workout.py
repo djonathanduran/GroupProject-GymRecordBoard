@@ -36,44 +36,26 @@ class Workout:
         return connectToMySQL(cls.db_name).query_db(query, db_data)
 
     @staticmethod
-    def validate_workout(data):
+    def validate_workout(workout):
         is_valid = True
-        if len(data['cardio_max']) < 0:
+        if len(workout['cardio_max']) < 0:
             is_valid = False
             flash("Must be more that 0", "error2")
-        if len(data['arm_curl_max']) < 0:
+        if len(workout['arm_curl_max']) < 0:
             is_valid = False
             flash("Must be more that 0", "error2")
-        if len(data['squats_max_sets']) < 0:
+        if len(workout['squats_max_sets']) < 0:
             is_valid = False
             flash("Must be more that 0", "error2")
-        if len(data['situp_reps_max']) < 0:
+        if len(workout['situp_reps_max']) < 0:
             is_valid = False
             flash("Must be more that 0", "error2")
-        if len(data['leg_set_max']) < 0:
+        if len(workout['leg_set_max']) < 0:
             is_valid = False
             flash("Must be more that 0", "error2")
-        if len(data['triceps_sets_max']) < 0:
+        if len(workout['triceps_sets_max']) < 0:
             is_valid = False
             flash("Must be more that 0", "error2")
-        if len(data['cardio_max']) == 0:
-            is_valid = False
-            flash("Field is required", "error2")
-        if len(data['arm_curl_max']) == 0:
-            is_valid = False
-            flash("Field is required", "error2")
-        if len(data['squats_max_sets']) == 0:
-            is_valid = False
-            flash("Field is required", "error2")
-        if len(data['situp_reps_max']) == 0:
-            is_valid = False
-            flash("Field is required", "error2")
-        if len(data['leg_set_max']) == 0:
-            is_valid = False
-            flash("Field is required", "error2")
-        if len(data['triceps_sets_max']) == 0:
-            is_valid = False
-            flash("Field is required", "error2")
         return is_valid
 
     @classmethod
