@@ -10,6 +10,7 @@
 <body>
     <div class="d-flex justify-content-around mt-4">
         <form action="/create_workout" method="POST" class="col-4 p-4 bg-dark text-light">
+            <h1 class="text-danger">NEW RPS</h1>
             {% with messages = get_flashed_messages(category_filter=['workout']) %}
                 {% if messages %}
                     <div class="alert alert-danger" role="alert">
@@ -37,14 +38,13 @@
                 <input type="number" name="situp_reps_max" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="leg_set_max">Leg Set Max:</label>
-                <input type="number" name="leg_set_max" class="form-control" cols="30" rows="5">
+                <label for="legs_set_max">Leg Set Max:</label>
+                <input type="number" name="legs_set_max" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="triceps_sets_max">Leg Set Max:</label>
-                <input type="number" name="triceps_sets_max" class="form-control" cols="30" rows="5">
+                <label for="triceps_sets_max">Triceps Sets Max:</label>
+                <input type="number" name="triceps_sets_max" class="form-control" required>
             </div>
-
             <input type="submit" value="New Workout" class="form-control btn btn-primary">
         </form>
     </div>

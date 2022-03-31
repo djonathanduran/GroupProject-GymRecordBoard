@@ -1,6 +1,7 @@
 from flask import render_template, redirect, session, request, flash
 from flask_app import app
 from flask_app.models.user import User
+from flask_app.models.workout import Workout
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
@@ -42,7 +43,7 @@ def login():
     session['user_id'] = user.id
     return redirect('/dashboard')
 
-# Read users and cars
+# dashboard
 
 @app.route('/dashboard')
 def dashboard():
@@ -52,8 +53,22 @@ def dashboard():
         'id': session['user_id']
     }
     users = User.get_by_id(data)
-    return render_template("dashboard.html", users = users)
+    all_users = User.get_all_users()
+    return render_template("dashboard.html", users = users, all_users = all_users )
 
+
+
+# Read a user
+
+@app.route('/one_user/<int:usr_id>')
+def display_one_user(usr_id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        'id': usr_id
+    }
+    users_and_workouts = User.get_one_with_workouts(data)
+    return render_template('one_user.html', users_and_workouts = users_and_workouts)
 
 # logout
 

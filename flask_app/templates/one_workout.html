@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="d-flex justify-content-around mt-4 ">
+        <div class="col-4 p-4 bg-dark text-light">
+            <div class="bg-secondary">
+                <h1 class="text-info ml-4 mt-2">Personal Record</h1>
+                <h5 class="text-info ml-4 ">Date: {{one_workout.updated_at}}</h5>
+            </div>
+            <h4>Cardio Max: {{ one_workout.cardio_max }}</h4>
+            <h4>Arm Curl Max: {{ one_workout.arm_curl_max }}</h4>
+            <h4>Squats Max sets: {{ one_workout.squats_max_sets }}</h4>
+            <h4>Situp Reps Max: {{ one_workout.situp_reps_max }}</h4>
+            <h4>legs Set Max: {{ one_workout.legs_set_max }}</h4>
+            <h4>Triceps Sets Max: {{ one_workout.triceps_sets_max }}</h4>
+
+        </div>
+    </div>
+</body>
+</html>

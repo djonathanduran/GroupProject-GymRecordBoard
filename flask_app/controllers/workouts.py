@@ -3,6 +3,7 @@ from flask import render_template, redirect, request, session
 from flask_app.models.workout import Workout
 from flask_app.models.comment import Expense
 from flask_app.models.user import User
+# from flask_app.controllers import users
 
 
 
@@ -24,14 +25,14 @@ def create_workout():
     if not Workout.validate_workout(request.form):
         return redirect('/new')
     data = {
-        "cardio": request.form["cardio"],
+        "cardio_max": request.form["cardio_max"],
         "arm_curl_max": request.form["arm_curl_max"],
         "squats_max_sets": request.form["squats_max_sets"],
         "situp_reps_max": request.form["situp_reps_max"],
-        "leg_set_max": request.form["leg_set_max"],
-        "triceps_sets_max": request.form["triceps_sets_max"]
+        "legs_set_max": request.form["legs_set_max"],
+        "triceps_sets_max": request.form["triceps_sets_max"],
+        "user_id": session["user_id"]
     }
-    # pic_filename = secure_filename("image".filename)
     Workout.add_workout(data)
     return redirect('/dashboard')
 
@@ -44,11 +45,10 @@ def one_workout(workout_id):
         return redirect('/logout')
     data = {
         'id': workout_id,
-
     }
     one_workout = Workout.get_one_workout(data)
     print(one_workout)
-    return render_template('single_workout.html', one_workout = one_workout)
+    return render_template('one_workout.html', one_workout = one_workout)
 
 # Update a workout
 
@@ -78,11 +78,11 @@ def update_one_workout(workout_id):
         "arm_curl_max": request.form["arm_curl_max"],
         "squats_max_sets": request.form["squats_max_sets"],
         "situp_reps_max": request.form["situp_reps_max"],
-        "leg_set_max": request.form["leg_set_max"],
+        "legs_set_max": request.form["legs_set_max"],
         "triceps_sets_max": request.form["triceps_sets_max"]
     }
     Workout.update_workout(data)
-    return redirect(f'/one_workout/{workout_id}')
+    return redirect('/dashboard')
 
 
 # Destroy a workouts
@@ -94,5 +94,6 @@ def delete_workout(workout_id):
     data = {
         'id': workout_id
     }
+
     Workout.destroy_workout(data)
     return redirect('/dashboard')
