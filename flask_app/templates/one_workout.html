@@ -30,5 +30,10 @@
             <a class="btn btn-danger" href="/destroy_workout/{{one_workout.id}}">Delete PRs</a>
         </div>
     </div>
+    <form action="/one_workout/" method="POST">
+        <label for="content">Comments:</label>
+        <input type="text" name="content">
+        <input type="submit" value="comment">
+    </form>
 </body>
 </html>
